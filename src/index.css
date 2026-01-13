@@ -1,3 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300..800&family=Playfair+Display:wght@400..700&family=Caveat:wght@400..700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    /* Void Black Background - Cinematic Theme */
+    @apply font-body text-[#f3f2ed] bg-[#050505] antialiased selection:bg-[#cc5500]/40 selection:text-white overflow-x-hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #cc5500;
+    border-radius: 3px;
+  }
+}
+
+@layer utilities {
+  /* ═══════════════════════════════════════════════════════════════
+     AETHER CINEMATIC DESIGN SYSTEM - BURNT ORANGE EDITION
+     ═══════════════════════════════════════════════════════════════ */
+
+  /* GLASS PANELS */
+  .glass-panel {
+    @apply bg-[#0a0a0a]/80 backdrop-blur-2xl border border-white/5 shadow-2xl;
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/5 hover:bg-white/10 transition-all shadow-lg hover:border-[#cc5500]/30 hover:shadow-[#cc5500]/10;
+  }
+
+  .glass-input {
+    @apply bg-[#0a0a0a]/50 border border-white/10 text-black placeholder:text-gray-500 focus:border-[#cc5500] focus:ring-1 focus:ring-[#cc5500]/50 transition-all backdrop-blur-sm rounded-lg;
+  }
+
+  .glass-nav {
+    @apply bg-[#050505]/90 backdrop-blur-xl border-b border-white/5;
+  }
+
+  /* TEXT GRADIENTS */
+  .text-gradient-accent {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#cc5500] via-[#ff7733] to-[#cc5500];
+  }
+
+  .text-gradient-cream {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#f3f2ed] via-[#d4d4d4] to-[#f3f2ed];
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    @apply px-6 py-3 bg-[#cc5500] text-white font-sans text-sm uppercase tracking-widest rounded-full hover:bg-[#ff7733] transition-all duration-300 shadow-lg hover:shadow-[#cc5500]/30;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 bg-transparent border-2 border-[#f3f2ed]/30 text-[#f3f2ed] font-sans text-sm uppercase tracking-widest rounded-full hover:border-[#cc5500] hover:text-[#cc5500] transition-all duration-300;
+  }
+
+  /* FONT FAMILIES */
+  .font-handwriting {
+    font-family: 'Caveat', cursive;
+  }
+
+  /* ANIMATIONS */
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .animate-float-slow {
+    animation: float 10s ease-in-out infinite;
+  }
+
+  .animate-float-medium {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+    opacity: 0;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  /* FILM GRAIN OVERLAY */
+  .film-grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.06;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-15px);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.6;
+    }
+  }
+}
