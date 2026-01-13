@@ -13,6 +13,7 @@ import Auth from './pages/Auth';
 import Manifesto from './pages/Manifesto';
 import Planning from './pages/Planning';
 import TripPlan from './pages/TripPlan';
+import ComingSoon from './pages/ComingSoon';
 import './index.css';
 
 
@@ -54,6 +55,7 @@ const App = () => {
   
 
   const [tripDestination, setTripDestination] = useState(''); // Selected destination for planning
+  const [comingSoonFeature, setComingSoonFeature] = useState(''); // Feature name for coming soon page
 
 
   const API_BASE = 'http://localhost:8000/api';
@@ -274,7 +276,14 @@ const App = () => {
             />
         );
         case 'about': return <About />;
-        case 'discover': return <Discover />;
+        case 'discover': return (
+            <Discover 
+                onComingSoon={(featureName) => {
+                    setComingSoonFeature(featureName);
+                    setCurrentPage('coming-soon');
+                }}
+            />
+        );
         case 'manifesto': return <Manifesto />;
         case 'create': return (
             <CreateGroup 
@@ -294,6 +303,10 @@ const App = () => {
                 onViewPlan={(dest) => {
                     setTripDestination(dest);
                     setCurrentPage('trip-plan');
+                }}
+                onComingSoon={(featureName) => {
+                    setComingSoonFeature(featureName);
+                    setCurrentPage('coming-soon');
                 }}
                 authenticatedRequest={makeAuthenticatedRequest}
             />
@@ -335,6 +348,12 @@ const App = () => {
                     switchMode={() => setCurrentPage(currentPage === 'login' ? 'register' : 'login')}
                 />
             );
+        case 'coming-soon': return (
+            <ComingSoon 
+                featureName={comingSoonFeature}
+                onBack={() => setCurrentPage('home')}
+            />
+        );
         default: return <Home onStart={() => setCurrentPage('join')} onNavigate={setCurrentPage} />;
     }
   };

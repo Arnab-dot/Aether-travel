@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, useSpring, useInView, AnimatePresence,
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as random from 'maath/random/dist/maath-random.esm';
-import { ArrowRight, MapPin } from 'lucide-react';
+import { ArrowRight, MapPin, Plane } from 'lucide-react';
 
 // --- GLOBAL ASSETS ---
 // --- GLOBAL ASSETS ---
@@ -287,7 +287,7 @@ const PassportStamp = ({ text, x, y, rotate = -15, delay = 0 }) => (
             style={{ transform: `rotate(${rotate}deg)` }}
         >
             <div className="border-b border-[#cc5500]/30 pb-1 mb-1 text-center font-bold">{text}</div>
-            <div className="text-[8px] text-center opacity-60">✈ APPROVED ✈</div>
+            <div className="text-[8px] text-center opacity-60">APPROVED</div>
         </div>
     </FloatingObject>
 );
@@ -425,7 +425,7 @@ const OpeningStillness = () => {
                     }}
                     transition={{ duration: 8, repeat: Infinity, delay: 2 }}
                 >
-                    ✈
+                    <Plane size={18} />
                 </motion.div>
             </div>
 

@@ -1,9 +1,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Search } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 
-const Discover = () => {
+const Discover = ({ onComingSoon }) => {
     const destinations = [
         { title: "Tropical Paradise", tag: "Beach", image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=600&q=80", desc: "Ancient temples, vibrant reefs, and sunsets that melt your heart." },
         { title: "Neon Nights", tag: "City", image: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=600&q=80", desc: "A cyberpunk dreamscape where tradition meets the future." },
@@ -31,16 +31,6 @@ const Discover = () => {
                         Explore the <span className="text-[#cc5500] italic">World</span>
                     </h1>
                     <p className="text-[#f3f2ed]/40 font-sans text-sm">Curated spots for every kind of traveler.</p>
-
-                    {/* Search Bar */}
-                    <div className="max-w-md mx-auto mt-8 relative group">
-                        <input 
-                            type="text" 
-                            placeholder="Search destinations..." 
-                            className="glass-input w-full px-6 py-4 pl-12 text-sm"
-                        />
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#f3f2ed]/30 group-focus-within:text-[#cc5500] transition-colors" size={18} />
-                    </div>
                 </div>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -70,7 +60,10 @@ const Discover = () => {
                                 <p className="text-[#f3f2ed]/40 font-sans text-sm leading-relaxed mb-4">
                                     {dest.desc}
                                 </p>
-                                <button className="text-[#cc5500] font-sans text-xs tracking-wide uppercase hover:text-[#f3f2ed] transition-colors flex items-center gap-2">
+                                <button 
+                                    onClick={() => onComingSoon && onComingSoon(`${dest.title} Details`)}
+                                    className="text-[#cc5500] font-sans text-xs tracking-wide uppercase hover:text-[#f3f2ed] transition-colors flex items-center gap-2"
+                                >
                                     Explore <ArrowRight size={14} />
                                 </button>
                             </div>

@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { Clock } from 'lucide-react';
 
 const TimeModule = ({ availability, setAvailability, heatmapData }) => {
   const handleChange = (e) => {
@@ -47,7 +48,7 @@ const TimeModule = ({ availability, setAvailability, heatmapData }) => {
   return (
     <div className="bg-slate-800/50 p-6 rounded-2xl backdrop-blur-md border border-slate-700/50 shadow-xl">
       <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <span>⏱️</span> Time & Availability
+        <Clock size={24} className="text-blue-400" /> Time & Availability
       </h2>
 
       {/* Input Section */}
@@ -82,9 +83,9 @@ const TimeModule = ({ availability, setAvailability, heatmapData }) => {
             onChange={handleChange}
             className={`w-full border border-slate-700 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500/50 outline-none transition-all appearance-none cursor-pointer ${statusColors[availability.status] || 'bg-slate-900/50 text-white'}`}
           >
-            <option value="FREE" className="bg-slate-800 text-emerald-400">✅ Fully Free</option>
-            <option value="MAYBE" className="bg-slate-800 text-yellow-400">⚠ Maybe</option>
-            <option value="BUSY" className="bg-slate-800 text-red-400">❌ Not Free</option>
+            <option value="FREE" className="bg-slate-800 text-emerald-400">Fully Free</option>
+            <option value="MAYBE" className="bg-slate-800 text-yellow-400">Maybe</option>
+            <option value="BUSY" className="bg-slate-800 text-red-400">Not Free</option>
           </select>
         </div>
       </div>

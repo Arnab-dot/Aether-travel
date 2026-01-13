@@ -124,10 +124,10 @@ const LogisticsModule = ({ spid }) => {
                                                 onChange={(e) => setTransportMode(e.target.value)}
                                                 className="w-full bg-slate-900/50 border border-slate-700 rounded-xl pl-10 pr-4 py-3 text-slate-200 focus:outline-none focus:border-purple-500"
                                             >
-                                                <option value="Flight">Flight ✈️</option>
-                                                <option value="Train">Train 🚆</option>
-                                                <option value="Bus">Bus 🚌</option>
-                                                <option value="Car">Car 🚗</option>
+                                                <option value="Flight">Flight</option>
+                                                <option value="Train">Train</option>
+                                                <option value="Bus">Bus</option>
+                                                <option value="Car">Car</option>
                                             </select>
                                         </div>
                                     </div>

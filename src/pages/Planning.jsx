@@ -269,7 +269,7 @@ const Planning = ({ spid, goBack }) => {
                     </p>
                     <div className="mt-4 p-4 border-l-2 border-[#c0a080] bg-[#c0a080]/5">
                         <p className="italic text-gray-500 text-xs">
-                            "AI Consensus: <strong className="text-white">Manali Trip</strong> exhibits optimal resonance with defined plans. Budget reserves are sufficient for 85% of proposed activities."
+                            "Adventure awaits! Your squad is ready to conquer <strong className="text-white">new horizons</strong>. When friends align, magic happens. This is going to be <strong className="text-[#c0a080]">LEGENDARY!</strong>"
                         </p>
                     </div>
                 </div>

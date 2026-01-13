@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ThumbsUp, ThumbsDown, UserCheck, AlertCircle } from 'lucide-react';
+import { ThumbsUp, ThumbsDown, UserCheck, AlertCircle, Receipt } from 'lucide-react';
 import axios from 'axios';
 import { Loader2, Sparkles, TrendingDown } from 'lucide-react';
 import GroupChat from '../GroupChat';
@@ -101,7 +101,7 @@ const CostModule = ({ costData, setCostData, calculatedShares, handleCalculate, 
   return (
     <div className="bg-slate-800/50 p-6 rounded-2xl backdrop-blur-md border border-slate-700/50 shadow-xl">
       <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-         <span>🧾</span> Cost Split Estimator
+         <Receipt size={24} className="text-purple-400" /> Cost Split Estimator
       </h2>
 
       <div className="flex gap-4 mb-6">
@@ -208,7 +208,7 @@ const CostModule = ({ costData, setCostData, calculatedShares, handleCalculate, 
                 className="w-full py-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 rounded-xl font-bold text-white shadow-lg shadow-emerald-900/20 flex items-center justify-center gap-2 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
             >
                 {optimizing ? <Loader2 className="animate-spin" /> : <Sparkles />}
-                {optimizing ? "AI Engine Running..." : "Run Smart Cost Optimizer 💡"}
+                {optimizing ? "AI Engine Running..." : "Run Smart Cost Optimizer"}
             </button>
             
             {optimizationResult && (

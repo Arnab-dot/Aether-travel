@@ -1,4 +1,5 @@
 import React from 'react';
+import { Wallet } from 'lucide-react';
 
 const BudgetModule = ({ budget, setBudget, groupStats, readOnly = false }) => {
   const handleChange = (e) => {
@@ -9,7 +10,7 @@ const BudgetModule = ({ budget, setBudget, groupStats, readOnly = false }) => {
   return (
     <div className="bg-slate-800/50 p-6 rounded-2xl backdrop-blur-md border border-slate-700/50 shadow-xl">
       <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <span>💰</span> Budget Preferences
+        <Wallet size={24} className="text-emerald-400" /> Budget Preferences
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">

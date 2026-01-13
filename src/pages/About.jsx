@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Sparkles, Target, Wand2 } from 'lucide-react';
 
 const About = () => {
     const creator = { name: "Arnab", role: "Creator & Developer", color: "bg-[#cc5500]" };
@@ -28,9 +29,9 @@ const About = () => {
                 {/* Values Grid */}
                 <div className="grid md:grid-cols-3 gap-8 mb-20">
                     {[
-                        { title: "Zero Friction", desc: "No more endless back-and-forth. Just decisions.", icon: "✨" },
-                        { title: "Vibe First", desc: "We match moods, not just budgets.", icon: "🎯" },
-                        { title: "AI Magic", desc: "Smart suggestions that feel intuitive.", icon: "🪄" }
+                        { title: "Zero Friction", desc: "No more endless back-and-forth. Just decisions.", icon: <Sparkles size={32} /> },
+                        { title: "Vibe First", desc: "We match moods, not just budgets.", icon: <Target size={32} /> },
+                        { title: "AI Magic", desc: "Smart suggestions that feel intuitive.", icon: <Wand2 size={32} /> }
                     ].map((item, idx) => (
                         <motion.div 
                             key={idx}
@@ -39,7 +40,7 @@ const About = () => {
                             transition={{ delay: idx * 0.1 }}
                             className="glass-card p-8 text-center rounded-xl hover:shadow-[0_0_30px_rgba(204,85,0,0.1)] transition-all duration-500"
                         >
-                            <div className="text-4xl mb-6">{item.icon}</div>
+                            <div className="text-4xl mb-6 text-[#cc5500]">{item.icon}</div>
                             <h3 className="text-2xl font-serif text-[#f3f2ed] mb-3">{item.title}</h3>
                             <p className="text-[#f3f2ed]/40 font-sans text-sm">{item.desc}</p>
                         </motion.div>

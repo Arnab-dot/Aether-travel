@@ -1,4 +1,5 @@
 import React from 'react';
+import { Map } from 'lucide-react';
 
 const ItineraryTimeline = ({ itinerary }) => {
   if (!itinerary || itinerary.length === 0) return null;
@@ -6,7 +7,7 @@ const ItineraryTimeline = ({ itinerary }) => {
   return (
     <div className="bg-slate-800/50 p-6 rounded-2xl backdrop-blur-md border border-slate-700/50 shadow-xl">
       <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-        <span>🗺️</span> Day-wise Itinerary
+        <Map size={24} className="text-emerald-400" /> Day-wise Itinerary
       </h2>
       
       <div className="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
@@ -38,7 +39,7 @@ const ItineraryTimeline = ({ itinerary }) => {
                                     <span className={`font-mono text-xs uppercase tracking-widest font-bold ${
                                         dayPlan.schedule[timeOfDay].type === 'GROUP' ? 'text-primary' : 'text-emerald-400'
                                     }`}>
-                                        {timeOfDay} • {dayPlan.schedule[timeOfDay].type === 'GROUP' ? '🤝 Shared Moment' : '🧘 Personal Freedom'}
+                                        {timeOfDay} • {dayPlan.schedule[timeOfDay].type === 'GROUP' ? 'Shared Moment' : 'Personal Freedom'}
                                     </span>
                                 </div>
                                 

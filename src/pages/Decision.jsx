@@ -5,7 +5,7 @@ import { Trophy, AlertTriangle, PartyPopper, ChevronRight, Activity, Zap, Star }
 import axios from 'axios';
 import MemberManagementModal from '../components/planning/MemberManagementModal';
 
-const Decision = ({ decisionSpid, setDecisionSpid, handleGetDecision, decisionResult, loading: parentLoading, onViewPlan, authenticatedRequest }) => {
+const Decision = ({ decisionSpid, setDecisionSpid, handleGetDecision, decisionResult, loading: parentLoading, onViewPlan, authenticatedRequest, onComingSoon }) => {
   // ... (State logic same) ...
   const [localSpid, setLocalSpid] = useState('');
   const [localResult, setLocalResult] = useState(null);
@@ -126,7 +126,7 @@ const Decision = ({ decisionSpid, setDecisionSpid, handleGetDecision, decisionRe
                     exit={{ opacity: 0 }}
                     className="p-4 border border-red-900/50 bg-red-900/10 text-red-400 font-mono text-xs uppercase tracking-widest text-center mb-8"
                 >
-                    ⚠ {error}
+                    <AlertTriangle size={16} className="inline mr-2" /> {error}
                 </motion.div>
             )}
         </AnimatePresence>
@@ -200,7 +200,10 @@ const Decision = ({ decisionSpid, setDecisionSpid, handleGetDecision, decisionRe
                             <p className="text-sm text-gray-400 font-mono mb-4 leading-relaxed">
                                 Minor divergence detected in preferences. Recommend executing standard calibration maneuvers.
                             </p>
-                            <button className="w-full py-3 border border-[#c0a080] text-[#c0a080] hover:bg-[#c0a080] hover:text-black font-mono text-xs uppercase tracking-widest transition-all">
+                            <button 
+                                onClick={() => onComingSoon && onComingSoon('Group Voting System')}
+                                className="w-full py-3 border border-[#c0a080] text-[#c0a080] hover:bg-[#c0a080] hover:text-black font-mono text-xs uppercase tracking-widest transition-all"
+                            >
                                 Start Vote
                             </button>
                          </div>
