@@ -5,6 +5,8 @@ import { Trophy, AlertTriangle, PartyPopper, ChevronRight, Activity, Zap, Star }
 import axios from 'axios';
 import MemberManagementModal from '../components/planning/MemberManagementModal';
 
+import { API_URL } from '../config';
+
 const Decision = ({ decisionSpid, setDecisionSpid, handleGetDecision, decisionResult, loading: parentLoading, onViewPlan, authenticatedRequest, onComingSoon }) => {
   // ... (State logic same) ...
   const [localSpid, setLocalSpid] = useState('');
@@ -35,11 +37,11 @@ const Decision = ({ decisionSpid, setDecisionSpid, handleGetDecision, decisionRe
     try {
       let response;
       if (authenticatedRequest) {
-          response = await authenticatedRequest(`http://127.0.0.1:8000/api/group/${spid}/recommendation/`);
+          response = await authenticatedRequest(`${API_URL}/api/group/${spid}/recommendation/`);
       } else {
            // Fallback to fetch if prop missing (should not happen in main app)
            const token = localStorage.getItem('access');
-           response = await fetch(`http://127.0.0.1:8000/api/group/${spid}/recommendation/`, {
+           response = await fetch(`${API_URL}/api/group/${spid}/recommendation/`, {
                 headers: { 'Authorization': `Bearer ${token}` }
            });
       }

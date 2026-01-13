@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Share2, Send, X, MessageSquare, Menu } from 'lucide-react';
+import { API_URL } from '../config';
 
 const GroupChat = ({ spid, token, username }) => {
     const [messages, setMessages] = useState([]);
@@ -25,7 +26,7 @@ const GroupChat = ({ spid, token, username }) => {
 
     const fetchMessages = async () => {
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/chat/${spid}/`, {
+            const response = await fetch(`${API_URL}/api/chat/${spid}/`, {
                 headers: {
                     'Authorization': `Bearer ${token}`
                 }
@@ -44,7 +45,7 @@ const GroupChat = ({ spid, token, username }) => {
         if (!newMessage.trim()) return;
 
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/chat/${spid}/`, {
+            const response = await fetch(`${API_URL}/api/chat/${spid}/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

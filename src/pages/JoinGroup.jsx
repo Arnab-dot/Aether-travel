@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Plus, Sparkles, User, Coffee, Camera, Compass, PartyPopper, Check, Globe, Target, ArrowRight } from 'lucide-react';
 import axios from 'axios';
 
+import { API_URL } from '../config';
+
 const JoinGroup = ({ joinData, setJoinData, handleJoinGroup, joinMessage }) => {
     const [step, setStep] = useState(1);
     const [suggestions, setSuggestions] = useState([]);
@@ -32,7 +34,7 @@ const JoinGroup = ({ joinData, setJoinData, handleJoinGroup, joinMessage }) => {
         setSuggestions([]); 
         setLoadingSuggestions(true);
         try {
-            let url = `http://127.0.0.1:8000/api/vibes/?type=local&city=${joinData.city}`;
+            let url = `${API_URL}/api/vibes/?type=local&city=${joinData.city}`;
             if (category) url += `&category=${category}`;
             if (joinData.budget) url += `&budget=${joinData.budget}`;
             const response = await axios.get(url);

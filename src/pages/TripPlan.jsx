@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ItineraryTimeline from '../components/planning/ItineraryTimeline';
 import PackingChecklist from '../components/planning/PackingChecklist';
 import { FileText, ClipboardList } from 'lucide-react';
+import { API_URL } from '../config';
 
 const TripPlan = ({ spid, goBack, initialDestination, authenticatedRequest }) => {
   const [destination, setDestination] = useState(initialDestination || '');
@@ -11,7 +12,7 @@ const TripPlan = ({ spid, goBack, initialDestination, authenticatedRequest }) =>
   const [loadingItinerary, setLoadingItinerary] = useState(false);
   const [loadingPacking, setLoadingPacking] = useState(false);
   
-  const API_BASE = 'http://localhost:8000/api';
+  const API_BASE = `${API_URL}/api`;
 
   useEffect(() => {
     if (destination) {

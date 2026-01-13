@@ -5,6 +5,8 @@ import VibeCard from './VibeCard';
 import { X, Heart, MapPin, Globe } from 'lucide-react';
 import axios from 'axios';
 
+import { API_URL } from '../config';
+
 const VibeSwiper = ({ city, state, onComplete }) => {
     const [mode, setMode] = useState(null); // 'local' or 'global' or null (selection)
     const [cards, setCards] = useState([]);
@@ -22,7 +24,7 @@ const VibeSwiper = ({ city, state, onComplete }) => {
             setLoading(true);
             try {
                 // In a real app, use the API url from environment
-                const response = await axios.get(`http://localhost:8000/api/vibes/?type=${mode}&city=${city}&state=${state}`);
+                const response = await axios.get(`${API_URL}/api/vibes/?type=${mode}&city=${city}&state=${state}`);
                 setCards(response.data);
             } catch (error) {
                 console.error("Failed to fetch vibes", error);

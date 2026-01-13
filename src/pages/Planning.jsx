@@ -4,13 +4,11 @@ import TimeModule from '../components/planning/TimeModule';
 import CostModule from '../components/planning/CostModule';
 import LogisticsModule from '../components/planning/LogisticsModule';
 import { Sparkles, Hexagon, BarChart3, Clock, AlertCircle } from 'lucide-react';
+import { API_URL } from '../config';
 
-const Planning = ({ spid, goBack }) => {
-  const [budget, setBudget] = useState({ min_budget: '', comfort_budget: '', max_budget: '' });
-  const [groupStats, setGroupStats] = useState(null);
-  
-  const [availability, setAvailability] = useState({ start_date: '', end_date: '', status: 'FREE' });
-  const [heatmapData, setHeatmapData] = useState(null);
+const Planning = ({ spid, goBack, onAnalyzeStart, tripDestination }) => {
+  const [data, setData] = useState(null);
+  const [activeTab, setActiveTab] = useState('logistics'); // logistics, budget, time, cost
   
   const [costData, setCostData] = useState({ total_cost: '' });
   const [calculatedShares, setCalculatedShares] = useState(null);
@@ -22,7 +20,7 @@ const Planning = ({ spid, goBack }) => {
   const [newAdminName, setNewAdminName] = useState('');
 
   
-  const API_BASE = 'http://localhost:8000/api';
+  const API_BASE = `${API_URL}/api`;
   const token = localStorage.getItem('access');
 
   const headers = {

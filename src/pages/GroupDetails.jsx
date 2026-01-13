@@ -4,6 +4,8 @@ import { LogOut, AlertTriangle, ShieldCheck } from 'lucide-react';
 import LogisticsModule from '../components/planning/LogisticsModule';
 import axios from 'axios';
 
+import { API_URL } from '../config';
+
 const GroupDetails = ({ spid, onLeave }) => {
     const [leaving, setLeaving] = useState(false);
 
@@ -14,7 +16,7 @@ const GroupDetails = ({ spid, onLeave }) => {
 
         setLeaving(true);
         try {
-            await axios.post('http://127.0.0.1:8000/api/group/leave/', {}, {
+            await axios.post(`${API_URL}/api/group/leave/`, {}, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('access')}` }
             });
             // Cleanup local state

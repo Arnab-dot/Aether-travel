@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { X, Save, User, MapPin, Wallet, Sparkles } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { API_URL } from '../config';
 
 const UserProfileModal = ({ isOpen, onClose }) => {
     const [userData, setUserData] = useState(null);
@@ -40,7 +41,7 @@ const UserProfileModal = ({ isOpen, onClose }) => {
                 return;
             }
 
-            const response = await axios.get(`http://127.0.0.1:8000/api/member/${userId}/`);
+            const response = await axios.get(`${API_URL}/api/member/${userId}/`);
             setUserData(response.data);
             setEditForm({
                 username: response.data.username,
@@ -64,7 +65,7 @@ const UserProfileModal = ({ isOpen, onClose }) => {
         setSaving(true);
         const userId = localStorage.getItem('user_id');
         try {
-            await axios.patch(`http://127.0.0.1:8000/api/member/${userId}/`, {
+            await axios.patch(`${API_URL}/api/member/${userId}/`, {
                 username: editForm.username,
                 city: editForm.city,
                 state: editForm.state, // or state_residence

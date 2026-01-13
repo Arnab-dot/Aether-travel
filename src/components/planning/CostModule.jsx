@@ -3,6 +3,7 @@ import { ThumbsUp, ThumbsDown, UserCheck, AlertCircle, Receipt } from 'lucide-re
 import axios from 'axios';
 import { Loader2, Sparkles, TrendingDown } from 'lucide-react';
 import GroupChat from '../GroupChat';
+import { API_URL } from '../../config';
 
 
 const CostModule = ({ costData, setCostData, calculatedShares, handleCalculate, spid }) => {
@@ -21,7 +22,7 @@ const CostModule = ({ costData, setCostData, calculatedShares, handleCalculate, 
 
   const fetchBudgetStatus = async () => {
     try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/group/${spid}/budget/`, {
+        const response = await axios.get(`${API_URL}/api/group/${spid}/budget/`, {
             headers: { Authorization: `Bearer ${localStorage.getItem('access')}` }
         });
         if (response.data.proposal) {
@@ -44,7 +45,7 @@ const CostModule = ({ costData, setCostData, calculatedShares, handleCalculate, 
 
   const handleVote = async (vote) => {
     try {
-        await axios.post(`http://127.0.0.1:8000/api/group/${spid}/budget/`, { vote }, {
+        await axios.post(`${API_URL}/api/group/${spid}/budget/`, { vote }, {
             headers: { Authorization: `Bearer ${localStorage.getItem('access')}` }
         });
         fetchBudgetStatus();
@@ -56,7 +57,7 @@ const CostModule = ({ costData, setCostData, calculatedShares, handleCalculate, 
   const handlePropose = async () => {
      if (!costData.total_cost) return alert("Please enter a cost");
      try {
-        await axios.post(`http://127.0.0.1:8000/api/group/${spid}/budget/`, { 
+        await axios.post(`${API_URL}/api/group/${spid}/budget/`, { 
             estimated_trip_cost: costData.total_cost,
             description: "Admin Proposal"
         }, {
@@ -81,7 +82,7 @@ const CostModule = ({ costData, setCostData, calculatedShares, handleCalculate, 
             flexibility_flags: { date_flexible: true, travel_mode_flexible: true }
         };
 
-        const response = await axios.post(`http://127.0.0.1:8000/api/group/${spid}/optimize-cost/`, payload, {
+        const response = await axios.post(`${API_URL}/api/group/${spid}/optimize-cost/`, payload, {
             headers: { Authorization: `Bearer ${localStorage.getItem('access')}` }
         });
         setOptimizationResult(response.data);

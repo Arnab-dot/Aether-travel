@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { X, Save, Trash2, User, MapPin, Wallet, Plus, Edit3 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { API_URL } from '../../config';
 
 const MemberManagementModal = ({ spid, isOpen, onClose, onDataChange, authenticatedRequest }) => {
     const [members, setMembers] = useState([]);
@@ -24,7 +25,7 @@ const MemberManagementModal = ({ spid, isOpen, onClose, onDataChange, authentica
                 ? (url) => authenticatedRequest(url)
                 : (url) => axios.get(url, { headers: { Authorization: `Bearer ${localStorage.getItem('access')}` } });
 
-            const response = await fetcher(`http://127.0.0.1:8000/api/group/${spid}/members/`);
+            const response = await fetcher(`${API_URL}/api/group/${spid}/members/`);
             
             // Check if response is from our helper (has .ok) or axios (has .data)
             let data;
@@ -64,7 +65,7 @@ const MemberManagementModal = ({ spid, isOpen, onClose, onDataChange, authentica
             // Let's stick to axios here for speed if authRequest is GET-only capable? 
             // Actually default makeAuthenticatedRequest uses fetch options.
             
-            const url = `http://127.0.0.1:8000/api/member/${memberId}/`;
+            const url = `${API_URL}/api/member/${memberId}/`;
             const body = {
                 username: editForm.username,
                 city: editForm.city,
@@ -101,7 +102,7 @@ const MemberManagementModal = ({ spid, isOpen, onClose, onDataChange, authentica
     const handleDelete = async (memberId) => {
         if (!window.confirm("Are you sure you want to remove this member? This cannot be undone.")) return;
          try {
-            const url = `http://127.0.0.1:8000/api/member/${memberId}/`;
+            const url = `${API_URL}/api/member/${memberId}/`;
              
             if (authenticatedRequest) {
                  await authenticatedRequest(url, { method: 'DELETE' });

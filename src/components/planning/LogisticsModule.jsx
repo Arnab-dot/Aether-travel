@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MapPin, Plane, Train, Bus, Clock, Save, Edit2, Hotel, User, Zap, Activity, Heart, Shield, Sparkles, Car } from 'lucide-react';
+import { API_URL } from '../../config';
 
 const LogisticsModule = ({ spid }) => {
     const [members, setMembers] = useState([]);
@@ -21,7 +22,7 @@ const LogisticsModule = ({ spid }) => {
 
     const fetchMembers = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:8000/api/group/${spid}/members/`, {
+            const response = await axios.get(`${API_URL}/api/group/${spid}/members/`, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('access')}` }
             });
             setMembers(response.data.members || []);
@@ -36,7 +37,7 @@ const LogisticsModule = ({ spid }) => {
         e.preventDefault();
         setSubmitting(true);
         try {
-            await axios.patch(`http://127.0.0.1:8000/api/group/${spid}/logistics/update/`, {
+            await axios.patch(`${API_URL}/api/group/${spid}/logistics/update/`, {
                 accommodation,
                 transport_details: {
                     mode: transportMode,

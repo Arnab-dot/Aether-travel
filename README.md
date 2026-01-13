@@ -12,7 +12,7 @@
 [![Three.js](https://img.shields.io/badge/Three.js-r182-000000?style=flat&logo=three.js)](https://threejs.org/)
 [![Framer Motion](https://img.shields.io/badge/Framer%20Motion-12.0-FF0055?style=flat)](https://www.framer.com/motion/)
 
-[Live Demo](#) • [Features](#-features) • [Tech Stack](#-technology-stack) • [Installation](#-installation)
+[**🚀 Live Demo**](https://aether-travel-nine.vercel.app/) • [Features](#-features) • [Tech Stack](#-technology-stack) • [Installation](#-installation)
 
 </div>
 
