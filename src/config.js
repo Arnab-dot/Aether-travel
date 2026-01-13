@@ -1,5 +1,6 @@
 // Centralized configuration for the application using Vite environment variables
 // VITE_API_URL should be set in .env (local) or Vercel Environment Variables (production)
+// Deployment refresh v1
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://aether-backend-3va3.onrender.com';
 

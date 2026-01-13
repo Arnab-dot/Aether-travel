@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-// Force deployment update
+// Force deployment update v3
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import LandingPage from './pages/LandingPage';

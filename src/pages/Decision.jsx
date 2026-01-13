@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+// Deployment refresh v1
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, AlertTriangle, PartyPopper, ChevronRight, Activity, Zap, Star } from 'lucide-react';
 import axios from 'axios';
