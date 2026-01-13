@@ -15,6 +15,7 @@ import Planning from './pages/Planning';
 import TripPlan from './pages/TripPlan';
 import ComingSoon from './pages/ComingSoon';
 import './index.css';
+import { API_URL } from './config';
 
 
 
