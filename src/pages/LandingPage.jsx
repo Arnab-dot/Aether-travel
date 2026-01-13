@@ -342,7 +342,7 @@ const TRAVELER_QUESTIONS = [
     "When did you last feel truly alive?"
 ];
 
-const OpeningStillness = () => {
+const OpeningStillness = ({ onGetStarted }) => {
     const { scrollY } = useScroll();
     const opacity = useTransform(scrollY, [0, 400], [1, 0]);
     const scale = useTransform(scrollY, [0, 400], [1, 1.15]);
@@ -483,7 +483,10 @@ const OpeningStillness = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 5, duration: 1 }}
                 >
-                    <MagneticButton className="group relative px-10 py-4 bg-transparent border-2 border-[#f3f2ed]/30 rounded-full text-[#f3f2ed] font-sans text-sm uppercase tracking-[0.2em] overflow-hidden hover:border-[#cc5500] transition-colors duration-500">
+                    <MagneticButton 
+                    onClick={onGetStarted}
+                    className="group relative px-10 py-4 bg-transparent border-2 border-[#f3f2ed]/30 rounded-full text-[#f3f2ed] font-sans text-sm uppercase tracking-[0.2em] overflow-hidden hover:border-[#cc5500] transition-colors duration-500">
+
                         <span className="relative z-10 group-hover:text-[#cc5500] transition-colors">Begin Your Journey</span>
                         <motion.div 
                             className="absolute inset-0 bg-[#f3f2ed]/5" 
@@ -710,7 +713,7 @@ const EFFORT_LEVELS = [
     { label: "The Odyssey", text: "New stories that no one else will understand.", color: "from-[#050505] via-[#311b92] to-[#050505]" }
 ];
 
-const IntrospectionSlider = () => {
+const IntrospectionSlider = ({ onGetStarted }) => {
     const [level, setLevel] = useState(0);
 
     return (
@@ -776,6 +779,7 @@ const IntrospectionSlider = () => {
                 </div>
 
                  <MagneticButton 
+                    onClick={onGetStarted}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1 }}
@@ -838,7 +842,7 @@ const LandingPage = ({ onGetStarted }) => {
             <AtmosphereCanvas />
             
             {/* ACT I */}
-            <OpeningStillness />
+            <OpeningStillness onGetStarted={onGetStarted} />
             <MatchCutSequence />
             
             {/* ACT II */}
@@ -896,7 +900,7 @@ const LandingPage = ({ onGetStarted }) => {
              </div>
 
             {/* ACT III */}
-            <IntrospectionSlider />
+            <IntrospectionSlider onGetStarted={onGetStarted} />
 
             {/* THE NEW PHOTO WALL SECTION */}
             <PhotoWall />
