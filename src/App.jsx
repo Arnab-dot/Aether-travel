@@ -16,7 +16,9 @@ import TripPlan from './pages/TripPlan';
 import ComingSoon from './pages/ComingSoon';
 import './index.css';
 import { API_URL } from './config';
-import { validateSecureConnection, getSecureHeaders, loginRateLimiter } from './utils/security';
+import { validateSecureConnection, getSecureHeaders, loginRateLimiter, validatePasswordStrength } from './utils/security';
+import { validateAndSanitize } from './utils/sanitize';
+import { formatApiError } from './utils/errorHandler';
 
 // Validate secure connection on app load
 validateSecureConnection(API_URL);
@@ -141,22 +143,39 @@ const App = () => {
   const handleRegister = async (e) => {
     e.preventDefault();
     setRegisterMessage('');
+    
+    // Validate password strength
+    const passwordValidation = validatePasswordStrength(registerData.password);
+    if (!passwordValidation.isValid) {
+      setRegisterMessage(passwordValidation.errors[0]);
+      return;
+    }
+    
     try {
+      // Sanitize inputs (except password)
+      const sanitizedData = validateAndSanitize(registerData);
+      
       const response = await fetch(`${API_BASE}/register/`, {
         method: 'POST',
         headers: getSecureHeaders(),
-        body: JSON.stringify(registerData)
+        body: JSON.stringify(sanitizedData)
       });
+      
       const data = await response.json();
+      
+      // Clear password from memory immediately
+      setRegisterData({ username: '', password: '' });
+      
       if (response.ok) {
         setRegisterMessage('Success! Please login now.');
-        setRegisterData({ username: '', password: '' });
         setTimeout(() => setCurrentPage('login'), 2000);
       } else {
-        setRegisterMessage('Error: ' + JSON.stringify(data));
+        const errorMsg = formatApiError(response, data);
+        setRegisterMessage(errorMsg || 'Registration failed. Please try again.');
       }
     } catch (error) {
-      setRegisterMessage('Error: ' + error.message);
+      setRegisterMessage('Network error. Please check your connection.');
+      console.error('Registration error:', error);
     }
   };
 
@@ -172,16 +191,24 @@ const App = () => {
     }
     
     try {
+      // Sanitize username (but not password)
+      const sanitizedData = validateAndSanitize(loginData);
+      
       const response = await fetch(`${API_BASE}/login/`, {
         method: 'POST',
         headers: getSecureHeaders(),
-        body: JSON.stringify(loginData)
+        body: JSON.stringify(sanitizedData)
       });
+      
       const data = await response.json();
+      
+      // Clear password from memory immediately
+      setLoginData({ username: loginData.username, password: '' });
+      
       if (response.ok) {
         localStorage.setItem("access", data.access);
         localStorage.setItem("refresh", data.refresh);
-        localStorage.setItem("user_type", data.user_type); // Store Role
+        localStorage.setItem("user_type", data.user_type);
         localStorage.setItem("username", data.username);
         localStorage.setItem("user_id", data.user_id);
         setToken(data.access);
@@ -190,10 +217,12 @@ const App = () => {
         setLoginData({ username: '', password: '' });
         setTimeout(() => setCurrentPage('home'), 1000);
       } else {
-        setLoginMessage('Error: ' + JSON.stringify(data));
+        const errorMsg = formatApiError(response, data);
+        setLoginMessage(errorMsg || 'Invalid credentials.');
       }
     } catch (error) {
-      setLoginMessage('Error: ' + error.message);
+      setLoginMessage('Network error. Please check your connection.');
+      console.error('Login error:', error);
     }
   };
 

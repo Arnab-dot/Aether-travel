@@ -12,13 +12,11 @@ export const validateSecureConnection = (apiUrl) => {
 
 /**
  * Creates secure headers for API requests
+ * Note: Security headers like X-Content-Type-Options should be set by the server as response headers
  */
 export const getSecureHeaders = (token = null) => {
     const headers = {
         'Content-Type': 'application/json',
-        'X-Content-Type-Options': 'nosniff',
-        'X-Frame-Options': 'DENY',
-        'X-XSS-Protection': '1; mode=block',
     };
 
     if (token) {
