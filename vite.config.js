@@ -6,13 +6,11 @@ export default defineConfig({
   plugins: [react()],
   build: {
     sourcemap: false, // Disable source maps in production for security
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // Remove console.logs in production
-        drop_debugger: true
-      }
-    }
+    minify: 'esbuild', // Use esbuild (built-in, faster than terser)
+    target: 'es2015',
+  },
+  esbuild: {
+    drop: ['console', 'debugger'], // Remove console.logs and debuggers in production
   },
   server: {
     headers: {
