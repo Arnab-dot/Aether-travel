@@ -19,6 +19,19 @@ const Planning = ({ spid, goBack, onAnalyzeStart, tripDestination }) => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [newAdminName, setNewAdminName] = useState('');
 
+  // Missing state declarations
+  const [budget, setBudget] = useState({
+    min_budget: '',
+    comfort_budget: '',
+    max_budget: ''
+  });
+  const [groupStats, setGroupStats] = useState(null);
+  const [availability, setAvailability] = useState({
+    start_date: '',
+    end_date: ''
+  });
+  const [heatmapData, setHeatmapData] = useState(null);
+
   
   const API_BASE = `${API_URL}/api`;
   const token = localStorage.getItem('access');

@@ -237,13 +237,13 @@ const JoinGroup = ({ joinData, setJoinData, handleJoinGroup, joinMessage }) => {
                                             <input 
                                                 type="text" 
                                                 placeholder="Place Name"
-                                                className="w-full text-lg font-serif bg-transparent text-black border-none p-0 focus:ring-0 placeholder:text-gray-500 placeholder:font-sans tracking-wide"
+                                                className="w-full text-lg font-serif bg-transparent text-[#f3f2ed] border-none p-0 focus:ring-0 placeholder:text-gray-500 placeholder:font-sans tracking-wide"
                                                 value={dest.type}
                                                 onChange={(e) => updateDestination(idx, 'type', e.target.value)}
                                             />
                                             <textarea 
                                                 placeholder="Notes: What do you want to do here?"
-                                                className="w-full bg-transparent text-black text-sm border-none p-0 focus:ring-0 placeholder:text-gray-500 font-mono min-h-[60px] resize-none leading-relaxed"
+                                                className="w-full bg-transparent text-[#f3f2ed] text-sm border-none p-0 focus:ring-0 placeholder:text-gray-500 font-mono min-h-[60px] resize-none leading-relaxed"
                                                 value={dest.description}
                                                 onChange={(e) => updateDestination(idx, 'description', e.target.value)}
                                             />
@@ -391,7 +391,7 @@ const InputGroup = ({ label, placeholder, value, onChange, icon }) => (
                 onChange={onChange}
                 placeholder={placeholder}
                 required
-                className="w-full pl-14 pr-5 py-4 bg-[#0a0a0a] border-2 border-white/10 text-black font-serif text-lg focus:border-[#cc5500] outline-none transition-all placeholder:text-gray-500"
+                className="w-full pl-14 pr-5 py-4 bg-[#0a0a0a] border-2 border-white/10 text-[#f3f2ed] font-serif text-lg focus:border-[#cc5500] outline-none transition-all placeholder:text-gray-500"
             />
         </div>
     </div>

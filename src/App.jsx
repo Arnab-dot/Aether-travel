@@ -16,6 +16,10 @@ import TripPlan from './pages/TripPlan';
 import ComingSoon from './pages/ComingSoon';
 import './index.css';
 import { API_URL } from './config';
+import { validateSecureConnection, getSecureHeaders, loginRateLimiter } from './utils/security';
+
+// Validate secure connection on app load
+validateSecureConnection(API_URL);
 
 
 
@@ -94,8 +98,7 @@ const App = () => {
       ...options,
       headers: {
         ...options.headers,
-        'Authorization': `Bearer ${currentToken}`,
-        'Content-Type': 'application/json',
+        ...getSecureHeaders(currentToken),
       }
     });
 
@@ -109,7 +112,7 @@ const App = () => {
 
       const refreshResponse = await fetch(`${API_BASE}/token/refresh/`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: getSecureHeaders(),
         body: JSON.stringify({ refresh })
       });
 
@@ -123,8 +126,7 @@ const App = () => {
           ...options,
           headers: {
             ...options.headers,
-            'Authorization': `Bearer ${currentToken}`,
-            'Content-Type': 'application/json',
+            ...getSecureHeaders(currentToken),
           }
         });
       } else {
@@ -142,7 +144,7 @@ const App = () => {
     try {
       const response = await fetch(`${API_BASE}/register/`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: getSecureHeaders(),
         body: JSON.stringify(registerData)
       });
       const data = await response.json();
@@ -161,10 +163,18 @@ const App = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     setLoginMessage('');
+    
+    // Rate limiting check
+    const identifier = loginData.username || 'anonymous';
+    if (!loginRateLimiter.isAllowed(identifier)) {
+      setLoginMessage('Too many login attempts. Please try again in 15 minutes.');
+      return;
+    }
+    
     try {
       const response = await fetch(`${API_BASE}/login/`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: getSecureHeaders(),
         body: JSON.stringify(loginData)
       });
       const data = await response.json();

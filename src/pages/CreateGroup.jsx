@@ -75,7 +75,7 @@ const CreateGroup = ({ groupData, setGroupData, handleCreateGroup, groupMessage 
                                 <input
                                     type="text"
                                     placeholder="Ladakh_2026"
-                                    className="w-full bg-[#0a0a0a] border-2 border-white/10 focus:border-[#cc5500] px-5 py-5 pl-12 text-xl font-serif tracking-wider text-black placeholder:text-gray-500 transition-all outline-none"
+                                    className="w-full bg-[#0a0a0a] border-2 border-white/10 focus:border-[#cc5500] px-5 py-5 pl-12 text-xl font-serif tracking-wider text-[#f3f2ed] placeholder:text-gray-500 transition-all outline-none"
                                     value={groupData.create_spid}
                                     onChange={(e) => setGroupData({...groupData, create_spid: e.target.value})}
                                     required
